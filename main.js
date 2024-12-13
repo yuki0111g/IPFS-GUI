@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
+const iconv = require("iconv-lite");
+
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -22,23 +24,29 @@ const createWindow = () => {
     dialog.showMessageBox(options);
   });
 
-  // IPC handler IPFS実行
-  ipcMain.handle('click-event', async (_e, _arg) => {
-    // 実行する.batファイルのパス
-    const batFilePath = 'path/to/your/script.bat';
+  // // IPC handler IPFS実行
+  // ipcMain.handle('click-event', async (_e, _arg) => {
 
-    exec(`"${batFilePath}"`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`エラーが発生しました: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`エラー出力: ${stderr}`);
-        return;
-      }
-      console.log(`出力: ${stdout}`);
-    });
-  });
+  //   // 実行する.batファイルのパス
+  //   const batFilePath = '';
+
+  //   const batProcess = spawn('cmd.exe', ['/c', batFilePath],{ shell: true, stdio: 'inherit' });
+
+  //   // 標準出力を取得
+  //   batProcess.stdout.on('data', (data) => {
+  //     console.log(`出力: ${iconv.decode(data, 'UTF-8')}`);
+  //   });
+
+  //   // 標準エラーを取得
+  //   batProcess.stderr.on('data', (data) => {
+  //     console.error(`エラー: ${iconv.decode(data, 'UTF-8')}`);
+  //   });
+
+  //   // プロセス終了時の処理
+  //   batProcess.on('close', (code) => {
+  //     console.log(`プロセスが終了しました。終了コード: ${code}`);
+  //   });
+  // });
 
   ipcMain.on('close', () => {
     app.quit();

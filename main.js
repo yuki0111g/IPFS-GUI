@@ -1,20 +1,41 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
 const { spawn, execSync } = require('child_process');
-const iconv = require("iconv-lite");
 const fs = require('fs').promises;
 const os = require('os');
 
 let batProcess;
+let win;
 
 const createWindow = () => {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+
+  async function bootAndExitIPFS() {
+    const p1 = new Promise((resolve, reject) => {
+      bootIPFS();
+      //5秒IPFSを動かして終了
+      console.log('[SETUP] 5秒後にIPFSを終了します');
+      setTimeout(() => {
+        //ipfsを終了させる。
+        try {
+          const result = execSync(`taskkill /PID ${batProcess.pid} /T /F`, { encoding: 'utf-8' });
+          //console.log(`出力: ${result}`);
+        } catch (error) {
+          console.error(`エラー: ${error.message}`);
+        }
+        console.log('[SETUP] 終了しました');
+        resolve();
+      }, 5000)
+    });
+    return await p1
+  }
+
 
   //ファイルを書き換える
   async function replaceLine(filePath, lineNumber, newText) {
@@ -41,14 +62,16 @@ const createWindow = () => {
     }
   }
 
+  function deleteFile(filePath) {
+    try {
+      fs.unlink(filePath);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 
   async function bootIPFS() {
-    require('child_process').exec('ipconfig', (err, stdout, stderr) => {
-
-      console.log('stdout:', stdout);
-      console.log('stderr:', stderr);
-    })
-
     // 実行する.batファイルのパス
     const batFilePath = 'run.bat';
 
@@ -56,12 +79,16 @@ const createWindow = () => {
 
     // 標準出力を取得
     batProcess.stdout.on('data', (data) => {
-      console.log(`出力: ${iconv.decode(data, 'Shift_JIS')}`);
+      console.log(`出力: ${data}`);
+
+      win.webContents.send('stdout', String(data));//標準出力をpreload.jsに送信
     });
 
     // 標準エラーを取得
     batProcess.stderr.on('data', (data) => {
-      console.error(`エラー: ${iconv.decode(data, 'Shift_JIS')}`);
+      console.error(`エラー: ${data}`);
+
+      win.webContents.send('stderr', String(data));//エラーもpreload.jsに送信
     });
 
     // プロセス終了時の処理
@@ -71,80 +98,105 @@ const createWindow = () => {
 
   }
 
+  async function setupBootStrapNode() {
+    /*
+   
+    2.ipfsを起動できるkadrtt.propertiesに設定
+    3.起動して5秒後に終了する(configがある場合は既存のpeerIDを使用する。ない場合は新規生成されたpeerIDを使用する。)
+    4.configを読み取ってkadrtt.propertiesのipfs.endpointを設定する
+    5..ipfs/config内のBootstrapを設定する
+   */
 
-  // IPC handler bootstrapノードで起動
-  ipcMain.handle('click-event', async (_e, _arg) => {
+    console.log('Start Setup BootstrapNode');
+
+    //1.
+    //バックスラッシュをバックスラッシュでエスケープする必要があります。
+    //deleteFile('.ipfs\\config');
 
 
-    //bootstrapノード　kadrtt.propertiesと.ipfs/config内のBootstrapの部分の書き換え
-    async function setPropertiesConfig() {
+    //2.
+    let myip; //自身のIPアドレス
+    const networkInterfaces = os.networkInterfaces(); // ネットワークインターフェース情報を取得
 
-      let myip; //自身のIPアドレス
-      const networkInterfaces = os.networkInterfaces(); // ネットワークインターフェース情報を取得
+    for (const interfaceName in networkInterfaces) {
+      const interfaces = networkInterfaces[interfaceName];
 
-      for (const interfaceName in networkInterfaces) {
-        const interfaces = networkInterfaces[interfaceName];
-
-        for (const iface of interfaces) {
-          // IPv4かつ内部ネットワークでないアドレスを取得
-          if (iface.family === 'IPv4' && !iface.internal) {
-            console.log(`IPアドレス (${interfaceName}): ${iface.address}`);
-            myip = iface.address;
-          }
+      for (const iface of interfaces) {
+        // IPv4かつ内部ネットワークでないアドレスを取得
+        if (iface.family === 'IPv4' && !iface.internal) {
+          //console.log(`IPアドレス (${interfaceName}): ${iface.address}`);
+          myip = iface.address;
         }
       }
-
-      //生成された.ipfs/configのBootstrapID読み取り
-      let mypeerID;
-
-      await fs.readFile(".ipfs/config").then(file => {
-        const data = JSON.parse(file);
-        mypeerID = data.Identity.PeerID;
-        console.log(`MyBootstrapPeerID is ${mypeerID} !`);
-
-      }).catch(err => {
-        console.error(err);
-      });
-
-      replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/${mypeerID}`);
-      replaceLine('.ipfs/config', 13, `"/ip4/${myip}/tcp/4001/ipfs/${mypeerID}"`);
     }
 
-    setPropertiesConfig();
+    //デフォルトに戻す。PeerIDは仮で、configに生成されたPeerIDが正しい
+    replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
+
+    //3. 5秒だけ起動
+    await bootAndExitIPFS();
+
+    //4. 生成された.ipfs/configのBootstrapID読み取り
+    let mypeerID;
+
+    await fs.readFile(".ipfs/config").then(file => {
+      const data = JSON.parse(file);
+      mypeerID = data.Identity.PeerID;
+    }).catch(err => {
+      console.error(err);
+    });
+
+    console.log(`MyIPaddress is ${myip} `);
+    console.log(`MyBootstrapPeerID is ${mypeerID} `);
+    
+    replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/${mypeerID}`);
+
+    //5.
+    replaceLine('.ipfs/config', 13, `"/ip4/${myip}/tcp/4001/ipfs/${mypeerID}"`);
+
+  }
+
+  //IPC handler bootstrapノードで起動
+  ipcMain.handle('click-event', async (_e, _arg) => {
+    await setupBootStrapNode();
     bootIPFS();
   });
 
   //IPC handler 一般ノード起動
   ipcMain.handle('send-text', async (_e, bootstrapIp, bootstrapPeerId) => {
 
-    //config削除
-    function deleteFile(filePath) {
-      try {
-        fs.unlink(filePath);
-        return true;
-      } catch (err) {
-        return false;
-      }
-    }
-
     const configpath = path.join('.ipfs', 'config');
     deleteFile(configpath)
 
-    console.log(`入力されたBootstrapのIp${bootstrapIp}`)
-    console.log(`入力されたBootstrapのPeerID${bootstrapPeerId}`)
+    console.log(`BootstrapIp is ${bootstrapIp}`)
+    console.log(`BootstrapPeerID is ${bootstrapPeerId}`)
 
     //endpointに書き換える。
     replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${bootstrapIp}/tcp/4001/ipfs/${bootstrapPeerId}`);
 
     bootIPFS();
-  })
+  });
 
+  ipcMain.handle('exitIpfs', () => {
+    //ipfsを終了させる。
+    console.log('IPFSを終了します');
+    try {
+      const result = execSync(`taskkill /PID ${batProcess.pid} /T /F`, { encoding: 'utf-8' });
+      //console.log(`出力: ${result}`);
+    } catch (error) {
+      console.error(`エラー: ${error.message}`);
+    }
+  });
+
+  ipcMain.handle('openExplorer', () =>{
+    spawn('explorer', [__dirname]);
+  });
 
   ipcMain.on('close', () => {
     app.quit();
   });
 
-  win.loadFile('index.html');
+  win.loadFile('./html/index.html');
 
   //win.webContents.openDevTools();
 };
@@ -157,6 +209,7 @@ app.whenReady().then(() => {
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
+
     }
   });
 });
@@ -165,15 +218,13 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
 
     //ipfsを終了させる。
-    console.log('タスクを同期的に終了します...');
+    console.log('IPFSを終了します');
     try {
       const result = execSync(`taskkill /PID ${batProcess.pid} /T /F`, { encoding: 'utf-8' });
-      console.log(`出力: ${result}`);
+      //console.log(`出力: ${result}`);
     } catch (error) {
       console.error(`エラー: ${error.message}`);
     }
-    
-    console.log("test2");
     app.quit();
   }
 });

@@ -1,0 +1,112 @@
+/* labelをボタンらしく */
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  /* カーソルを指に */
+  margin: 1em 0;
+  /* まわりの余白 */
+  padding: .7em 1em;
+  /* 文字まわりの余白 */
+  line-height: 1.4;
+  /* 行間 */
+  background: #ffce63;
+  /* 背景色 */
+  text-decoration: none;
+  /* URLっぽさ */
+  color: #000000;
+  /* 文字色 */
+  font-size: 0.95em;
+  /* フォントサイズ */
+  border-radius: 5px;
+  /* 角の丸み */
+  transition: 0.2s;
+  /* ホバーをなめらかに */
+}
+
+/* ホバー時 */
+.btn:hover {
+  box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2);
+  /* 影を表示 */
+}
+
+/* inputは隠す */
+.btn input {
+  display: none;
+}
+
+/* グローバルスタイル */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* ヘッダー */
+header {
+  background-color: #ffce63;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+}
+
+/* メインコンテンツ */
+main {
+  padding: 20px;
+}
+
+/* セクション */
+section {
+  margin-bottom: 40px;
+}
+
+/* ヒーローセクション */
+.hero {
+  text-align: center;
+}
+
+/* アバウトセクション */
+.about-center {
+  text-align: center;
+}
+
+.about-left {
+  text-align: left;
+}
+
+/* フッター */
+footer {
+  background-color: #ffce63;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+}
+
+/* 背景 */
+.bg_pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffe9a7;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.Wavy {
+  background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #ffe9a7 20px), repeating-linear-gradient(#ffc10755, #ffc107);
+}
+
+/* 標準出力のテキストエリア */
+textarea {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  resize: none;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+  font-family: monospace;
+}

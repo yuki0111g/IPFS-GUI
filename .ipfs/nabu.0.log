@@ -8,3 +8,5 @@
 î•ñ: API Handler handled dht/getvalue query in: 57 mS
 10Œ 31, 2024 11:08:32 ŒßŒã org.peergos.net.APIHandler handleCallToAPI
 î•ñ: API Handler handled dht/getvalue query in: 54 mS
+12æœˆ 22, 2024 1:00:00 åˆå¾Œ org.peergos.net.APIHandler handleCallToAPI
+æƒ…å ±: API Handler handled id query in: 36 mS

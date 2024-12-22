@@ -157,13 +157,13 @@ const createWindow = () => {
   }
 
   //IPC handler bootstrapノードで起動
-  ipcMain.handle('click-event', async (_e, _arg) => {
+  ipcMain.handle('startBootstrapNode', async (_e, _arg) => {
     await setupBootStrapNode();
     bootIPFS();
   });
 
   //IPC handler 一般ノード起動
-  ipcMain.handle('send-text', async (_e, bootstrapIp, bootstrapPeerId) => {
+  ipcMain.handle('startGeneralNode', async (_e, bootstrapIp, bootstrapPeerId) => {
 
     const configpath = path.join('.ipfs', 'config');
     deleteFile(configpath)

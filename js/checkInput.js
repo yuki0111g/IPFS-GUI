@@ -36,7 +36,7 @@ document.getElementById('connectBtn').addEventListener('click', function (event)
         const testBoxBTPeerID = document.getElementById('peerID').value;
         console.log(testBoxBTIP);
         console.log(testBoxBTPeerID);
-        window.apis2.sendText(testBoxBTIP, testBoxBTPeerID);
+        window.apis.startGeneralNodeEvent(testBoxBTIP, testBoxBTPeerID);
         window.location.href = "connection.html"; // 接続ページへ遷移
     }
 });

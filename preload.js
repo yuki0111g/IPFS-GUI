@@ -6,6 +6,7 @@ contextBridge.exposeInMainWorld('apis', {
     exitIpfsEvent: () => ipcRenderer.invoke('exitIpfs'),
     openExplorerEvent: () => ipcRenderer.invoke('openExplorer'),
     putContentEvent: (fileName, fileData) => ipcRenderer.invoke('putContent', { fileName, fileData }),
+    getContentEvent:(cid) => ipcRenderer.invoke('getContent',cid),
 });
 
 //btノード時の標準出力をbt_renderer.jsに送信
@@ -16,6 +17,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
 //一般ノード起動
 contextBridge.exposeInMainWorld('apis2', {
-    sendText: (testBoxBTIP,testBoxBTPeerID) => ipcRenderer.invoke('send-text', testBoxBTIP,testBoxBTPeerID),
-  });
+    sendText: (testBoxBTIP, testBoxBTPeerID) => ipcRenderer.invoke('send-text', testBoxBTIP, testBoxBTPeerID),
+});
 

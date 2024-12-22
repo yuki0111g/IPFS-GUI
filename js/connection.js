@@ -43,3 +43,8 @@ uploadButton.addEventListener('click', async () => {
         state.textContent = `エラー: ${result.error}`;
     }
 });
+
+document.getElementById('downloadButton').addEventListener('click', function(event){
+    const cid = document.getElementById('CID').value;
+    window.apis.getContentEvent(cid);
+});

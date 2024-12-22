@@ -118,3 +118,19 @@ java.nio.file.NoSuchFileException: putTMP\é¬¼.pdf
 情報: API Handler handled dht/putvaluewithattr query in: 17 mS
 12月 22, 2024 9:13:20 午後 org.peergos.net.APIHandler handleCallToAPI
 情報: API Handler handled dht/putvaluewithattr query in: 38 mS
+12月 22, 2024 10:00:36 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 61 mS
+12月 22, 2024 10:03:33 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 35 mS
+12月 22, 2024 10:36:13 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 34 mS
+12月 22, 2024 10:41:46 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 53 mS
+12月 22, 2024 10:59:07 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 97 mS
+12月 22, 2024 11:06:04 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 80 mS
+12月 22, 2024 11:23:40 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 87 mS
+12月 22, 2024 11:30:59 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 59 mS

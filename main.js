@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
-const { spawn, execSync } = require('child_process');
+const { spawn, execSync ,exec} = require('child_process');
 const fs = require('fs').promises;
 const os = require('os');
 
@@ -218,6 +218,28 @@ const createWindow = () => {
     const cid = result.CID_file;
 
     win.webContents.send('stdout', `${fileName}のCIDは ${cid} です。`);
+
+  });
+
+
+  ipcMain.handle('getContent', async (_e, cid) => {
+    //let result = execSync(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/getvalue?cid=${cid}"`);
+
+    
+    async function getContentExec(cid) {
+      const p1 = new Promise((resolve, reject) => {
+        const result = exec(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/getvalue?cid=${cid}"`,(error,stdout,stderr)=>{
+          console.log(stdout);
+          resolve([error,stdout,stderr]);
+        });
+      });
+      return p1
+    }
+    let result = await getContentExec(cid); 
+    console.log(result[0]);
+    console.log(result[1]);
+    console.log(result[2]);
+    win.webContents.send('stdout', result[1]);
 
   });
 

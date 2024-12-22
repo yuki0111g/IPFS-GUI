@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'"
-        />
-        <title>IPFS-for-general</title>
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-    <body>
-        <div class="bg_pattern Wavy"></div>
-        <header>
-        <h1>一般ユーザ</h1>
-        </header>
 
-        <main>
-            <section class="about">
-                <p>BootstrapユーザーのIPアドレスを入力してください</p>
-                <input type="text" id="ipaddress" name="ipaddress" placeholder="192.169.0.2" required minlength="7" maxlength="15" size="10" /><br>
-                <span id="ipError" class="error" style="color:red; display:none;">IPアドレスが正しくありません。</span><br>
-                
-                <p>BootstrapユーザーのPeerIDを入力してください</p>
-                <input type="text" id="peerID" name="peerID" placeholder="12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE" required size="10" /><br>
-                <span id="peerError" class="error" style="color:red; display:none;">PeerIDを入力してください。</span><br>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <title>一般ノード</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
 
-                <a id="connectBtn" href="connection.html" class="btn">接続</a>
-            </section>
+<body>
+    <div class="bg_pattern Wavy"></div>
+    <header>
+        <h1>接続ページ</h1>
+    </header>
 
-            <a href="index.html" class="btn">トップに戻る</a>
-        </main>
+    <main>
+        <section class="hero">
+            <h2>接続中です</h2>
+        </section>
+        <textarea id="output" readonly></textarea>
 
-        <footer>
-            <p>&copy; TEU@2024</p>
-        </footer>
+        <section class="about">
+            <a href="inputGeneral.html" id="exit" class="btn">切断してトップに戻る</a>
+            <input type="file" id="fileInput" class="btn" />
+            <button id="uploadButton" class="btn">コンテンツをPUT</button>
+            <p id="state"></p>
+            <p>CIDを入力</p>
+            <input type="text" id="CID" name="CID" placeholder="12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE" required size="10" />
+            <button id="downloadButton" class="btn">コンテンツをGET</button>
+        </section>
+    </main>
 
-        <script src="../js/checkInput.js"></script>
-    </body>
+    <footer>
+        <p>&copy; this is footer@2024</p>
+    </footer>
+</body>
+<script src="../js/general_renderer.js"></script>
+
 </html>

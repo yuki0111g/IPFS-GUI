@@ -131,7 +131,7 @@ const createWindow = () => {
     }
 
     //デフォルトに戻す。PeerIDは仮で、configに生成されたPeerIDが正しい
-    replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
+    replaceLine('kadrtt.properties', 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
 
     //3. 10秒だけ起動
     await bootAndExitIPFS();
@@ -172,7 +172,7 @@ const createWindow = () => {
     console.log(`BootstrapPeerID is ${bootstrapPeerId}`)
 
     //endpointに書き換える。
-    replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${bootstrapIp}/tcp/4001/ipfs/${bootstrapPeerId}`);
+    replaceLine('kadrtt.properties', 38, `ipfs.endpoint=/ip4/${bootstrapIp}/tcp/4001/ipfs/${bootstrapPeerId}`);
 
     bootIPFS();
   });

@@ -1,136 +1,373 @@
-10�� 31, 2024 11:06:47 �ߌ� org.peergos.net.APIHandler handleCallToAPI
-���: API Handler handled dht/add query in: 864 mS
-10�� 31, 2024 11:07:36 �ߌ� org.peergos.net.APIHandler handleCallToAPI
-���: API Handler handled dht/getvalue query in: 92 mS
-10�� 31, 2024 11:07:48 �ߌ� org.peergos.net.APIHandler handleCallToAPI
-���: API Handler handled dht/getvalue query in: 53 mS
-10�� 31, 2024 11:08:30 �ߌ� org.peergos.net.APIHandler handleCallToAPI
-���: API Handler handled dht/getvalue query in: 57 mS
-10�� 31, 2024 11:08:32 �ߌ� org.peergos.net.APIHandler handleCallToAPI
-���: API Handler handled dht/getvalue query in: 54 mS
-12月 22, 2024 1:00:00 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled id query in: 36 mS
-12月 22, 2024 5:16:17 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 48 mS
-12月 22, 2024 5:17:57 午後 org.peergos.util.HttpUtil replyError
-警告: Index 0 out of bounds for length 0
-java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
-	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
-	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
-	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
-	at java.base/java.util.Objects.checkIndex(Objects.java:385)
-	at java.base/java.util.ArrayList.get(ArrayList.java:427)
-	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:610)
-	at org.peergos.net.Handler.handle(Unknown Source)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:868)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:835)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1623)
-
-12月 22, 2024 5:17:57 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 23 mS
-12月 22, 2024 5:47:43 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 107 mS
-12月 22, 2024 5:51:26 午後 org.peergos.util.HttpUtil replyError
-警告: putTMP\general,zip
-java.nio.file.NoSuchFileException: putTMP\general,zip
-	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
-	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:234)
-	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
-	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
-	at java.base/java.nio.file.Files.readAllBytes(Files.java:3263)
-	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:466)
-	at org.peergos.net.Handler.handle(Unknown Source)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:868)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:835)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1623)
-
-12月 22, 2024 5:51:26 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 4 mS
-12月 22, 2024 5:51:31 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 48 mS
-12月 22, 2024 6:06:35 午後 org.peergos.util.HttpUtil replyError
-警告: putTMP\é¬¼.pdf
-java.nio.file.NoSuchFileException: putTMP\é¬¼.pdf
-	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
-	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:234)
-	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
-	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
-	at java.base/java.nio.file.Files.readAllBytes(Files.java:3263)
-	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:466)
-	at org.peergos.net.Handler.handle(Unknown Source)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:868)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:835)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1623)
-
-12月 22, 2024 6:06:35 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 2 mS
-12月 22, 2024 6:06:55 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 57 mS
-12月 22, 2024 6:09:14 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 46 mS
-12月 22, 2024 6:28:12 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 108 mS
-12月 22, 2024 6:31:09 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 88 mS
-12月 22, 2024 8:28:42 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 4919 mS
-12月 22, 2024 8:31:43 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 174 mS
-12月 22, 2024 8:49:31 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 1989 mS
-12月 22, 2024 8:52:17 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 84 mS
-12月 22, 2024 8:54:57 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 67 mS
-12月 22, 2024 8:56:01 午後 org.peergos.net.APIHandler handleCallToAPI
+5月 21, 2024 1:04:32 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 597984 mS
+5月 21, 2024 1:34:20 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 308 mS
+5月 21, 2024 1:34:42 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 104 mS
+5月 21, 2024 1:39:00 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 104 mS
+5月 21, 2024 1:39:03 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 98 mS
+5月 21, 2024 1:39:09 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 120 mS
+5月 21, 2024 1:39:11 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 121 mS
+5月 21, 2024 1:39:14 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 114 mS
+5月 21, 2024 1:39:15 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 123 mS
+5月 21, 2024 1:39:18 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 112 mS
+5月 21, 2024 1:39:20 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 106 mS
+5月 21, 2024 1:39:21 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 109 mS
+5月 21, 2024 1:39:21 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 108 mS
+5月 21, 2024 12:44:29 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 211 mS
+5月 21, 2024 12:48:17 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 222 mS
+5月 21, 2024 12:57:10 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 214 mS
+5月 21, 2024 1:28:14 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 222 mS
+5月 21, 2024 1:29:21 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 216 mS
+5月 21, 2024 1:31:07 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 250 mS
+5月 21, 2024 1:59:19 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 265 mS
+5月 21, 2024 1:59:29 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 42 mS
+5月 21, 2024 1:59:44 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 37 mS
+5月 21, 2024 2:01:42 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 153 mS
+5月 21, 2024 2:02:00 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 34 mS
+5月 21, 2024 2:02:09 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 45 mS
+5月 21, 2024 2:04:58 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 33 mS
+5月 21, 2024 2:05:04 午後 org.peergos.net.APIHandler handleCallToAPI
 情報: API Handler handled dht/putvaluewithattr query in: 70 mS
-12月 22, 2024 9:08:17 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 35 mS
-12月 22, 2024 9:08:51 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 756 mS
-12月 22, 2024 9:11:49 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 632 mS
-12月 22, 2024 9:12:02 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 589 mS
-12月 22, 2024 9:12:31 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 17 mS
-12月 22, 2024 9:13:20 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 38 mS
-12月 22, 2024 10:00:36 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 61 mS
-12月 22, 2024 10:03:33 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/putvaluewithattr query in: 35 mS
-12月 22, 2024 10:36:13 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 34 mS
-12月 22, 2024 10:41:46 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 53 mS
-12月 22, 2024 10:59:07 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 97 mS
-12月 22, 2024 11:06:04 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 80 mS
-12月 22, 2024 11:23:40 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 87 mS
-12月 22, 2024 11:30:59 午後 org.peergos.net.APIHandler handleCallToAPI
-情報: API Handler handled dht/getvalue query in: 59 mS
+5月 21, 2024 2:05:10 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 36 mS
+5月 21, 2024 2:05:19 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 37 mS
+5月 21, 2024 2:05:25 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 36 mS
+5月 21, 2024 2:05:28 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 35 mS
+5月 21, 2024 2:05:29 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 37 mS
+5月 21, 2024 2:38:33 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled id query in: 15 mS
+5月 21, 2024 2:38:39 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled version query in: 0 mS
+5月 21, 2024 3:09:39 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 11340 mS
+5月 21, 2024 3:18:13 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 11157 mS
+5月 21, 2024 3:32:13 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 11302 mS
+5月 21, 2024 3:35:00 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 11290 mS
+5月 21, 2024 9:56:19 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 440 mS
+5月 21, 2024 9:56:53 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 151 mS
+5月 21, 2024 9:57:42 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putattrs query in: 419 mS
+5月 21, 2024 9:59:17 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putattrs query in: 262 mS
+5月 21, 2024 9:59:21 午後 org.peergos.util.HttpUtil replyError
+警告: No target node found.
+
+org.peergos.net.APIException: No target node found.
+
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:284)
+	at org.peergos.net.Handler.handle(Handler.java:30)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:852)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:819)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+5月 21, 2024 9:59:21 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 98 mS
+5月 21, 2024 10:00:27 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 455 mS
+5月 21, 2024 10:01:46 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 343 mS
+5月 21, 2024 10:02:38 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 212 mS
+5月 21, 2024 10:03:13 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 185 mS
+5月 21, 2024 10:03:22 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 135 mS
+5月 21, 2024 10:03:43 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 123 mS
+5月 21, 2024 10:03:58 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 113 mS
+5月 21, 2024 10:04:07 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 100 mS
+5月 21, 2024 10:04:53 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 203 mS
+5月 21, 2024 10:05:13 午後 org.peergos.util.HttpUtil replyError
+警告: Cannot invoke "java.util.Map.entrySet()" because "values" is null
+java.lang.NullPointerException: Cannot invoke "java.util.Map.entrySet()" because "values" is null
+	at org.peergos.cbor.CborObject$CborMap.build(CborObject.java:119)
+	at org.peergos.protocol.dht.Kademlia.getValueByAttrs(Kademlia.java:825)
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:672)
+	at org.peergos.net.Handler.handle(Handler.java:30)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:852)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:819)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+5月 21, 2024 10:05:13 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 168 mS
+5月 21, 2024 10:05:17 午後 org.peergos.util.HttpUtil replyError
+警告: Cannot invoke "java.util.Map.entrySet()" because "values" is null
+java.lang.NullPointerException: Cannot invoke "java.util.Map.entrySet()" because "values" is null
+	at org.peergos.cbor.CborObject$CborMap.build(CborObject.java:119)
+	at org.peergos.protocol.dht.Kademlia.getValueByAttrs(Kademlia.java:825)
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:672)
+	at org.peergos.net.Handler.handle(Handler.java:30)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:852)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:819)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+5月 21, 2024 10:05:17 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 178 mS
+5月 21, 2024 10:05:31 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 266 mS
+5月 21, 2024 10:05:48 午後 org.peergos.util.HttpUtil replyError
+警告: Cannot invoke "java.util.Map.entrySet()" because "values" is null
+java.lang.NullPointerException: Cannot invoke "java.util.Map.entrySet()" because "values" is null
+	at org.peergos.cbor.CborObject$CborMap.build(CborObject.java:119)
+	at org.peergos.protocol.dht.Kademlia.getValueByAttrs(Kademlia.java:825)
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:672)
+	at org.peergos.net.Handler.handle(Handler.java:30)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:852)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:819)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+5月 21, 2024 10:05:48 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 166 mS
+5月 21, 2024 10:05:56 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 244 mS
+5月 21, 2024 10:06:26 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 101 mS
+5月 21, 2024 10:06:28 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 109 mS
+5月 21, 2024 10:06:30 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 128 mS
+5月 21, 2024 10:06:32 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 106 mS
+5月 21, 2024 10:06:35 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getbyattrs query in: 122 mS
+5月 21, 2024 10:12:50 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 216 mS
+5月 21, 2024 10:12:56 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 119 mS
+5月 21, 2024 10:13:14 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 124 mS
+5月 21, 2024 10:13:18 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putattrs query in: 324 mS
+5月 21, 2024 10:13:57 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 399 mS
+5月 21, 2024 10:14:27 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putattrs query in: 403 mS
+5月 21, 2024 10:25:52 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putattrs query in: 631 mS
+5月 21, 2024 10:26:10 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putattrs query in: 396 mS
+5月 21, 2024 11:15:09 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putattrs query in: 672 mS
+5月 21, 2024 11:37:39 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 559 mS
+5月 22, 2024 10:34:42 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 415 mS
+5月 22, 2024 11:29:38 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 407 mS
+5月 22, 2024 11:34:13 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 368 mS
+5月 22, 2024 11:35:07 午後 org.peergos.util.HttpUtil replyError
+警告: Cannot invoke "com.offbynull.kademlia.Activity.getNode()" because "x" is null
+java.lang.NullPointerException: Cannot invoke "com.offbynull.kademlia.Activity.getNode()" because "x" is null
+	at com.offbynull.kademlia.KBucket.lambda$dumpBucket$1(KBucket.java:519)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:178)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEachOrdered(ReferencePipeline.java:601)
+	at com.offbynull.kademlia.KBucket.dumpBucket(KBucket.java:535)
+	at com.offbynull.kademlia.RouteTreeNode.dumpAllNodesUnderTreeNode(RouteTreeNode.java:204)
+	at com.offbynull.kademlia.RouteTreeNode.findNodesWithLargestPossiblePrefix(RouteTreeNode.java:96)
+	at com.offbynull.kademlia.RouteTree.find(RouteTree.java:106)
+	at com.offbynull.kademlia.Router.find(Router.java:146)
+	at org.peergos.protocol.dht.KademliaEngine.getKClosestPeers(KademliaEngine.java:72)
+	at org.peergos.protocol.dht.Kademlia.findClosestPeers(Kademlia.java:156)
+	at org.peergos.protocol.dht.Kademlia.putRawContent(Kademlia.java:392)
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:285)
+	at org.peergos.net.Handler.handle(Handler.java:30)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:852)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:95)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:819)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+5月 22, 2024 11:35:07 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 49 mS
+5月 22, 2024 11:35:22 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 352 mS
+5月 22, 2024 11:36:33 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 452 mS
+5月 22, 2024 11:41:12 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 393 mS
+5月 23, 2024 12:07:42 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 341 mS
+5月 23, 2024 12:10:36 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 416 mS
+5月 23, 2024 12:11:13 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 393 mS
+5月 23, 2024 12:14:30 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 462 mS
+5月 23, 2024 9:57:22 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 341 mS
+5月 23, 2024 11:07:12 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 292 mS
+5月 23, 2024 11:37:36 午前 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 349 mS
+5月 27, 2024 11:21:30 午前 org.peergos.util.Logging lambda$init$0
+重大: Uncaught Exception in thread 1:main
+java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(Ljava/lang/Class;)Lcom/google/protobuf/Internal$ProtobufList;
+	at identify.pb.IdentifyOuterClass$Identify.<init>(IdentifyOuterClass.java:400)
+	at identify.pb.IdentifyOuterClass$Identify.<clinit>(IdentifyOuterClass.java:1641)
+	at org.peergos.HostBuilder.lambda$build$10(HostBuilder.java:163)
+	at io.libp2p.core.dsl.BuilderJKt.hostJ(BuilderJ.kt:14)
+	at org.peergos.HostBuilder.build(HostBuilder.java:147)
+	at org.peergos.HostBuilder.build(HostBuilder.java:140)
+	at org.peergos.EmbeddedIpfs.build(EmbeddedIpfs.java:209)
+	at org.peergos.APIServer.<init>(APIServer.java:63)
+	at org.peergos.APIServer.main(APIServer.java:133)
+
+5月 27, 2024 11:33:32 午前 org.peergos.util.Logging lambda$init$0
+重大: Uncaught Exception in thread 1:main
+java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(Ljava/lang/Class;)Lcom/google/protobuf/Internal$ProtobufList;
+	at identify.pb.IdentifyOuterClass$Identify.<init>(IdentifyOuterClass.java:400)
+	at identify.pb.IdentifyOuterClass$Identify.<clinit>(IdentifyOuterClass.java:1641)
+	at org.peergos.HostBuilder.lambda$build$10(HostBuilder.java:163)
+	at io.libp2p.core.dsl.BuilderJKt.hostJ(BuilderJ.kt:14)
+	at org.peergos.HostBuilder.build(HostBuilder.java:147)
+	at org.peergos.HostBuilder.build(HostBuilder.java:140)
+	at org.peergos.EmbeddedIpfs.build(EmbeddedIpfs.java:209)
+	at org.peergos.APIServer.<init>(APIServer.java:63)
+	at org.peergos.APIServer.main(APIServer.java:133)
+
+5月 27, 2024 11:33:44 午前 org.peergos.util.Logging lambda$init$0
+重大: Uncaught Exception in thread 1:main
+java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(Ljava/lang/Class;)Lcom/google/protobuf/Internal$ProtobufList;
+	at identify.pb.IdentifyOuterClass$Identify.<init>(IdentifyOuterClass.java:400)
+	at identify.pb.IdentifyOuterClass$Identify.<clinit>(IdentifyOuterClass.java:1641)
+	at org.peergos.HostBuilder.lambda$build$10(HostBuilder.java:163)
+	at io.libp2p.core.dsl.BuilderJKt.hostJ(BuilderJ.kt:14)
+	at org.peergos.HostBuilder.build(HostBuilder.java:147)
+	at org.peergos.HostBuilder.build(HostBuilder.java:140)
+	at org.peergos.EmbeddedIpfs.build(EmbeddedIpfs.java:209)
+	at org.peergos.APIServer.<init>(APIServer.java:63)
+	at org.peergos.APIServer.main(APIServer.java:133)
+
+5月 27, 2024 11:34:01 午前 org.peergos.util.Logging lambda$init$0
+重大: Uncaught Exception in thread 1:main
+java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(Ljava/lang/Class;)Lcom/google/protobuf/Internal$ProtobufList;
+	at identify.pb.IdentifyOuterClass$Identify.<init>(IdentifyOuterClass.java:400)
+	at identify.pb.IdentifyOuterClass$Identify.<clinit>(IdentifyOuterClass.java:1641)
+	at org.peergos.HostBuilder.lambda$build$10(HostBuilder.java:163)
+	at io.libp2p.core.dsl.BuilderJKt.hostJ(BuilderJ.kt:14)
+	at org.peergos.HostBuilder.build(HostBuilder.java:147)
+	at org.peergos.HostBuilder.build(HostBuilder.java:140)
+	at org.peergos.EmbeddedIpfs.build(EmbeddedIpfs.java:209)
+	at org.peergos.APIServer.<init>(APIServer.java:63)
+	at org.peergos.APIServer.main(APIServer.java:133)
+
+5月 27, 2024 11:34:31 午前 org.peergos.util.Logging lambda$init$0
+重大: Uncaught Exception in thread 1:main
+java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(Ljava/lang/Class;)Lcom/google/protobuf/Internal$ProtobufList;
+	at identify.pb.IdentifyOuterClass$Identify.<init>(IdentifyOuterClass.java:400)
+	at identify.pb.IdentifyOuterClass$Identify.<clinit>(IdentifyOuterClass.java:1641)
+	at org.peergos.HostBuilder.lambda$build$10(HostBuilder.java:163)
+	at io.libp2p.core.dsl.BuilderJKt.hostJ(BuilderJ.kt:14)
+	at org.peergos.HostBuilder.build(HostBuilder.java:147)
+	at org.peergos.HostBuilder.build(HostBuilder.java:140)
+	at org.peergos.EmbeddedIpfs.build(EmbeddedIpfs.java:209)
+	at org.peergos.APIServer.<init>(APIServer.java:63)
+	at org.peergos.APIServer.main(APIServer.java:133)
+
+5月 27, 2024 11:35:11 午前 org.peergos.util.Logging lambda$init$0
+重大: Uncaught Exception in thread 1:main
+java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(Ljava/lang/Class;)Lcom/google/protobuf/Internal$ProtobufList;
+	at identify.pb.IdentifyOuterClass$Identify.<init>(IdentifyOuterClass.java:400)
+	at identify.pb.IdentifyOuterClass$Identify.<clinit>(IdentifyOuterClass.java:1641)
+	at org.peergos.HostBuilder.lambda$build$10(HostBuilder.java:163)
+	at io.libp2p.core.dsl.BuilderJKt.hostJ(BuilderJ.kt:14)
+	at org.peergos.HostBuilder.build(HostBuilder.java:147)
+	at org.peergos.HostBuilder.build(HostBuilder.java:140)
+	at org.peergos.EmbeddedIpfs.build(EmbeddedIpfs.java:209)
+	at org.peergos.APIServer.<init>(APIServer.java:63)
+	at org.peergos.APIServer.main(APIServer.java:133)
+
+5月 27, 2024 11:35:48 午前 org.peergos.util.Logging lambda$init$0
+重大: Uncaught Exception in thread 1:main
+java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(Ljava/lang/Class;)Lcom/google/protobuf/Internal$ProtobufList;
+	at identify.pb.IdentifyOuterClass$Identify.<init>(IdentifyOuterClass.java:400)
+	at identify.pb.IdentifyOuterClass$Identify.<clinit>(IdentifyOuterClass.java:1641)
+	at org.peergos.HostBuilder.lambda$build$10(HostBuilder.java:163)
+	at io.libp2p.core.dsl.BuilderJKt.hostJ(BuilderJ.kt:14)
+	at org.peergos.HostBuilder.build(HostBuilder.java:147)
+	at org.peergos.HostBuilder.build(HostBuilder.java:140)
+	at org.peergos.EmbeddedIpfs.build(EmbeddedIpfs.java:209)
+	at org.peergos.APIServer.<init>(APIServer.java:63)
+	at org.peergos.APIServer.main(APIServer.java:133)
+
+5月 27, 2024 12:12:30 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 418 mS
+5月 27, 2024 12:13:06 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 270 mS
+5月 27, 2024 12:19:40 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 320 mS
+5月 27, 2024 12:20:21 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 90 mS
+5月 27, 2024 12:20:41 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/add query in: 137 mS

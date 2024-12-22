@@ -5,6 +5,7 @@ contextBridge.exposeInMainWorld('apis', {
     runClickEvent: async () => ipcRenderer.invoke('click-event'),
     exitIpfsEvent: () => ipcRenderer.invoke('exitIpfs'),
     openExplorerEvent: () => ipcRenderer.invoke('openExplorer'),
+    putContentEvent: (fileName, fileData) => ipcRenderer.invoke('putContent', { fileName, fileData }),
 });
 
 //btノード時の標準出力をbt_renderer.jsに送信

@@ -19,8 +19,8 @@ const createWindow = () => {
   async function bootAndExitIPFS() {
     const p1 = new Promise((resolve, reject) => {
       bootIPFS();
-      //5秒IPFSを動かして終了
-      console.log('[SETUP] 5秒後にIPFSを終了します');
+      //10秒IPFSを動かして終了
+      console.log('[SETUP] 10秒後にIPFSを終了します');
       setTimeout(() => {
         //ipfsを終了させる。
         try {
@@ -31,7 +31,7 @@ const createWindow = () => {
         }
         console.log('[SETUP] 終了しました');
         resolve();
-      }, 5000)
+      }, 10000)
     });
     return await p1
   }
@@ -62,9 +62,9 @@ const createWindow = () => {
     }
   }
 
-  function deleteFile(filePath) {
+  async function deleteFile(filePath) {
     try {
-      fs.unlink(filePath);
+      await fs.unlink(filePath);
       return true;
     } catch (err) {
       return false;
@@ -102,7 +102,7 @@ const createWindow = () => {
     /*
    
     2.ipfsを起動できるkadrtt.propertiesに設定
-    3.起動して5秒後に終了する(configがある場合は既存のpeerIDを使用する。ない場合は新規生成されたpeerIDを使用する。)
+    3.起動して10秒後に終了する(configがある場合は既存のpeerIDを使用する。ない場合は新規生成されたpeerIDを使用する。)
     4.configを読み取ってkadrtt.propertiesのipfs.endpointを設定する
     5..ipfs/config内のBootstrapを設定する
    */
@@ -133,7 +133,7 @@ const createWindow = () => {
     //デフォルトに戻す。PeerIDは仮で、configに生成されたPeerIDが正しい
     replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
 
-    //3. 5秒だけ起動
+    //3. 10秒だけ起動
     await bootAndExitIPFS();
 
     //4. 生成された.ipfs/configのBootstrapID読み取り
@@ -148,7 +148,7 @@ const createWindow = () => {
 
     console.log(`MyIPaddress is ${myip} `);
     console.log(`MyBootstrapPeerID is ${mypeerID} `);
-    
+
     replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/${mypeerID}`);
 
     //5.
@@ -188,12 +188,37 @@ const createWindow = () => {
     }
   });
 
-  ipcMain.handle('openExplorer', () =>{
+  ipcMain.handle('openExplorer', () => {
     spawn('explorer', [__dirname]);
   });
 
   ipcMain.on('close', () => {
     app.quit();
+  });
+
+  ipcMain.handle('putContent', async (event, { fileName, fileData }) => {
+    let savePath;
+    //putTMPフォルダに仮保存
+    try {
+      // 保存先ディレクトリ
+      savePath = path.join(__dirname, 'putTmp', fileName);
+
+      // ファイルを保存
+      await fs.writeFile(savePath, Buffer.from(fileData));
+      console.log('putTMPファイルに仮保存しました');
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+
+    console.log(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
+    let result = execSync(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
+    result = result.toString();
+    result = JSON.parse(result);
+    console.log(result);
+    const cid = result.CID_file;
+
+    win.webContents.send('stdout', `${fileName}のCIDは ${cid} です。`);
+
   });
 
   win.loadFile('./html/index.html');

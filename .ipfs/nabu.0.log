@@ -10,3 +10,111 @@
 ���: API Handler handled dht/getvalue query in: 54 mS
 12月 22, 2024 1:00:00 午後 org.peergos.net.APIHandler handleCallToAPI
 情報: API Handler handled id query in: 36 mS
+12月 22, 2024 5:16:17 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 48 mS
+12月 22, 2024 5:17:57 午後 org.peergos.util.HttpUtil replyError
+警告: Index 0 out of bounds for length 0
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:385)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:610)
+	at org.peergos.net.Handler.handle(Unknown Source)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:868)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:835)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+
+12月 22, 2024 5:17:57 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/getvalue query in: 23 mS
+12月 22, 2024 5:47:43 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 107 mS
+12月 22, 2024 5:51:26 午後 org.peergos.util.HttpUtil replyError
+警告: putTMP\general,zip
+java.nio.file.NoSuchFileException: putTMP\general,zip
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:234)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3263)
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:466)
+	at org.peergos.net.Handler.handle(Unknown Source)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:868)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:835)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+
+12月 22, 2024 5:51:26 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 4 mS
+12月 22, 2024 5:51:31 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 48 mS
+12月 22, 2024 6:06:35 午後 org.peergos.util.HttpUtil replyError
+警告: putTMP\é¬¼.pdf
+java.nio.file.NoSuchFileException: putTMP\é¬¼.pdf
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:234)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3263)
+	at org.peergos.net.APIHandler.handleCallToAPI(APIHandler.java:466)
+	at org.peergos.net.Handler.handle(Unknown Source)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:868)
+	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:835)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+
+12月 22, 2024 6:06:35 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 2 mS
+12月 22, 2024 6:06:55 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 57 mS
+12月 22, 2024 6:09:14 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 46 mS
+12月 22, 2024 6:28:12 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 108 mS
+12月 22, 2024 6:31:09 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 88 mS
+12月 22, 2024 8:28:42 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 4919 mS
+12月 22, 2024 8:31:43 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 174 mS
+12月 22, 2024 8:49:31 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 1989 mS
+12月 22, 2024 8:52:17 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 84 mS
+12月 22, 2024 8:54:57 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 67 mS
+12月 22, 2024 8:56:01 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 70 mS
+12月 22, 2024 9:08:17 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 35 mS
+12月 22, 2024 9:08:51 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 756 mS
+12月 22, 2024 9:11:49 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 632 mS
+12月 22, 2024 9:12:02 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 589 mS
+12月 22, 2024 9:12:31 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 17 mS
+12月 22, 2024 9:13:20 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/putvaluewithattr query in: 38 mS

@@ -19,8 +19,10 @@
         <h1>標準出力</h1>
         <textarea id="output" readonly></textarea>
         <section class="about">
-            <a href="index.html" id="exit"class="btn">切断してトップに戻る</a>
-            <button id="putContent" class="btn">コンテンツをPUT</button>
+            <a href="index.html" id="exit" class="btn">切断してトップに戻る</a>
+            <input type="file" id="fileInput" class="btn" />
+            <button id="uploadButton" class="btn">コンテンツをPUT</button>
+            <p id="state"></p>
         </section>
     </main>
 
@@ -29,4 +31,5 @@
     </footer>
 </body>
 <script src="../js/bt_renderer.js"></script>
+
 </html>

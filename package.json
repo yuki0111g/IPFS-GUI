@@ -1,17 +1,38 @@
 {
   "name": "ipfs-gui",
   "version": "1.0.0",
-  "description": "",
+  "description": "IPFS app",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
-  "author": "",
+  "author": "F",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^33.2.1"
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
   },
   "dependencies": {
     "iconv-lite": "^0.6.3"
+  },
+  "build": {
+    "appId": "com.electron.ipfsapp",
+    "productName": "ipfsApp",
+    "files": [
+      "css/**",
+      "html/**",
+      "js/**",
+      "node_modules/**",
+      "main.js",
+      "preload.js",
+      "!.ipfs/**",
+      "!getdata/**",
+      "!lib/**",
+      "!providers/**",
+      "!putTMP/**",
+      "!attr",
+      "!kadrtt.properties",
+      "!run.bat"
+    ]
   }
 }

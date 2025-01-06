@@ -33,6 +33,43 @@
       "!attr",
       "!kadrtt.properties",
       "!run.bat"
+    ],
+    "extraFiles": [
+      {
+        "from": ".ipfs/",
+        "to": ".ipfs/"
+      },
+      {
+        "from": "getdata/",
+        "to": "getdata/"
+      },
+      {
+        "from": "lib/",
+        "to": "lib/"
+      },
+      {
+        "from": "providers/",
+        "to": "providers/"
+      },
+      {
+        "from": "putTMP/",
+        "to": "putTMP/"
+      },
+      {
+        "from": "attr",
+        "to": "attr"
+      },
+      {
+        "from": "kadrtt.properties",
+        "to": "kadrtt.properties"
+      },{
+        "from": "run.bat",
+        "to": "run.bat"
+      },
+      {
+        "from": "run.sh",
+        "to": "run.sh"
+      }
     ]
   }
 }

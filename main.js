@@ -16,6 +16,13 @@ const createWindow = () => {
     },
   });
 
+  //ビルド後はexeと同じ階層になる
+  const getFilePath = (relativePath) => {
+    return app.isPackaged
+      ? path.resolve(process.resourcesPath, '../', relativePath) // ビルド後
+      : path.resolve(__dirname, relativePath); // 開発中
+  };
+
   async function bootAndExitIPFS() {
     const p1 = new Promise((resolve, reject) => {
       bootIPFS();
@@ -108,6 +115,7 @@ const createWindow = () => {
    */
 
     console.log('Start Setup BootstrapNode');
+    
 
     //1.
     //バックスラッシュをバックスラッシュでエスケープする必要があります。
@@ -131,7 +139,9 @@ const createWindow = () => {
     }
 
     //デフォルトに戻す。PeerIDは仮で、configに生成されたPeerIDが正しい
-    replaceLine('kadrtt.properties', 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
+    const kpPath = getFilePath('kadrtt.properties');
+    console.log('Resolved File Path:',kpPath);
+    replaceLine(kpPath, 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
 
     //3. 10秒だけ起動
     await bootAndExitIPFS();
@@ -139,7 +149,8 @@ const createWindow = () => {
     //4. 生成された.ipfs/configのBootstrapID読み取り
     let mypeerID;
 
-    await fs.readFile(".ipfs/config").then(file => {
+    const configPath=getFilePath(path.join('.ipfs', 'config'));
+    await fs.readFile(configPath).then(file => {
       const data = JSON.parse(file);
       mypeerID = data.Identity.PeerID;
     }).catch(err => {
@@ -149,10 +160,10 @@ const createWindow = () => {
     console.log(`MyIPaddress is ${myip} `);
     console.log(`MyBootstrapPeerID is ${mypeerID} `);
 
-    replaceLine('kadrtt.properties', 36, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/${mypeerID}`);
+    replaceLine(kpPath, 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/${mypeerID}`);
 
     //5.
-    replaceLine('.ipfs/config', 13, `"/ip4/${myip}/tcp/4001/ipfs/${mypeerID}"`);
+    replaceLine(configPath, 13, `"/ip4/${myip}/tcp/4001/ipfs/${mypeerID}"`);
 
   }
 
@@ -165,14 +176,15 @@ const createWindow = () => {
   //IPC handler 一般ノード起動
   ipcMain.handle('startGeneralNode', async (_e, bootstrapIp, bootstrapPeerId) => {
 
-    const configpath = path.join('.ipfs', 'config');
+    const configpath = getFilePath(path.join('.ipfs', 'config'));
     deleteFile(configpath)
 
     console.log(`BootstrapIp is ${bootstrapIp}`)
     console.log(`BootstrapPeerID is ${bootstrapPeerId}`)
 
     //endpointに書き換える。
-    replaceLine('kadrtt.properties', 38, `ipfs.endpoint=/ip4/${bootstrapIp}/tcp/4001/ipfs/${bootstrapPeerId}`);
+    const kpPath = getFilePath('kadrtt.properties');
+    replaceLine(kpPath, 38, `ipfs.endpoint=/ip4/${bootstrapIp}/tcp/4001/ipfs/${bootstrapPeerId}`);
 
     bootIPFS();
   });
@@ -201,7 +213,7 @@ const createWindow = () => {
     //putTMPフォルダに仮保存
     try {
       // 保存先ディレクトリ
-      savePath = path.join(__dirname, 'putTmp', fileName);
+      savePath = getFilePath(path.join('putTmp', fileName));
 
       // ファイルを保存
       await fs.writeFile(savePath, Buffer.from(fileData));
@@ -211,6 +223,8 @@ const createWindow = () => {
     }
 
     console.log(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
+    win.webContents.send('stdout', `curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
+    win.webContents.send('stdout',execSync(`cd`).toString());
     let result = execSync(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
     result = result.toString();
     result = JSON.parse(result);

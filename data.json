@@ -1,4 +1,6 @@
 {
-  "btip": "192.168.0.5",
-  "btpid": "dndsnfoandsfo"
+  "btip": "100.100.100.100",
+  "btpid": "fdnaogndsfnp",
+  "logLevel": "stdout",
+  "cleanBoot": "1"
 }

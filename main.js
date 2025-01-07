@@ -26,15 +26,15 @@ const createWindow = () => {
   };
 
   //JSONにデータを保存
-  const dataPath = getFilePath('data.json');
+
 
   function saveData(data) {
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(getFilePath('data.json'), JSON.stringify(data, null, 2), 'utf-8');
   }
 
   function loadData() {
-    if (fs.existsSync(dataPath)) {
-      const rawData = fs.readFileSync(dataPath, 'utf-8');
+    if (fs.existsSync(getFilePath('data.json'))) {
+      const rawData = fs.readFileSync(getFilePath('data.json'), 'utf-8');
       return JSON.parse(rawData);
     }
     return {}; // デフォルトデータ
@@ -167,7 +167,7 @@ const createWindow = () => {
 
     //3. 10秒だけ起動
     if (jsonData.cleanBoot == "1") {
-      deleteFile(getFilePath(path.join('.ipfs', 'config')));
+      //deleteFile(getFilePath(path.join('.ipfs', 'config')));
       await bootAndExitIPFS();
       jsonData.cleanBoot = "0";
       saveData(jsonData);
@@ -183,9 +183,18 @@ const createWindow = () => {
     // }).catch(err => {
     //   console.error(err);
     // });
-    const confResult = fs.readFileSync(configPath, 'utf-8');
-    const data = JSON.parse(confResult);
-    mypeerID = data.Identity.PeerID;
+    // const confResult = fs.readFileSync(configPath, 'utf-8');
+    // const data = JSON.parse(confResult);
+    // mypeerID = data.Identity.PeerID;
+    try {
+      // ファイルの内容を同期的に読み取る
+      const confResult = fs.readFileSync(configPath, 'utf8');
+      const data = JSON.parse(confResult);
+      mypeerID = data.Identity.PeerID;
+    } catch (error) {
+      // エラーが発生した場合の処理
+      console.error('ファイルの読み取り中にエラーが発生しました:', error.message);
+    }
 
     console.log(`MyIPaddress is ${myip} `);
     console.log(`MyBootstrapPeerID is ${mypeerID} `);
@@ -211,8 +220,10 @@ const createWindow = () => {
 
   //IPC handler 一般ノード起動
   ipcMain.handle('startGeneralNode', async (_e, bootstrapIp, bootstrapPeerId) => {
-    const inputData = { btip: bootstrapIp, btpid: bootstrapPeerId };
-    saveData(inputData);
+    jsonData = loadData();
+    jsonData.btip = bootstrapIp;
+    jsonData.btpid = bootstrapPeerId;
+    saveData(jsonData);
 
 
     const configpath = getFilePath(path.join('.ipfs', 'config'));

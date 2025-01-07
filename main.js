@@ -3,9 +3,11 @@ const path = require('path')
 const { spawn, execSync, exec } = require('child_process');
 const fs = require('fs');
 const os = require('os');
+const { json } = require('stream/consumers');
 
 let batProcess;
 let win;
+let jsonData;//グローバルな設定を参照
 
 const createWindow = () => {
   win = new BrowserWindow({
@@ -16,8 +18,15 @@ const createWindow = () => {
     },
   });
 
+  //ビルド後はexeと同じ階層になる
+  const getFilePath = (relativePath) => {
+    return app.isPackaged
+      ? path.resolve(process.resourcesPath, '../', relativePath) // ビルド後
+      : path.resolve(__dirname, relativePath); // 開発中
+  };
+
   //JSONにデータを保存
-  const dataPath = path.join(__dirname, 'data.json');
+  const dataPath = getFilePath('data.json');
 
   function saveData(data) {
     fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), 'utf-8');
@@ -31,12 +40,7 @@ const createWindow = () => {
     return {}; // デフォルトデータ
   }
 
-  //ビルド後はexeと同じ階層になる
-  const getFilePath = (relativePath) => {
-    return app.isPackaged
-      ? path.resolve(process.resourcesPath, '../', relativePath) // ビルド後
-      : path.resolve(__dirname, relativePath); // 開発中
-  };
+
 
   async function bootAndExitIPFS() {
     const p1 = new Promise((resolve, reject) => {
@@ -94,6 +98,7 @@ const createWindow = () => {
   }
 
   async function bootIPFS() {
+    jsonData = loadData();//まず設定を読む
     // 実行する.batファイルのパス
     const batFilePath = 'run.bat';
 
@@ -108,9 +113,11 @@ const createWindow = () => {
 
     // 標準エラーを取得
     batProcess.stderr.on('data', (data) => {
-      console.error(`エラー: ${data}`);
+      console.error(`エラー扱い: ${data}`);
+      if (jsonData.logLevel == "stderr") {
+        win.webContents.send('stderr', String(data));//エラーをpreload.jsに送信
+      }
 
-      win.webContents.send('stderr', String(data));//エラーもpreload.jsに送信
     });
 
     // プロセス終了時の処理
@@ -130,7 +137,7 @@ const createWindow = () => {
    */
 
     console.log('Start Setup BootstrapNode');
-
+    jsonData = loadData();//設定を読み込む
 
     //1.
     //バックスラッシュをバックスラッシュでエスケープする必要があります。
@@ -159,18 +166,26 @@ const createWindow = () => {
     replaceLine(kpPath, 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
 
     //3. 10秒だけ起動
-    await bootAndExitIPFS();
+    if (jsonData.cleanBoot == "1") {
+      deleteFile(getFilePath(path.join('.ipfs', 'config')));
+      await bootAndExitIPFS();
+      jsonData.cleanBoot = "0";
+      saveData(jsonData);
+    }
 
     //4. 生成された.ipfs/configのBootstrapID読み取り
     let mypeerID;
 
     const configPath = getFilePath(path.join('.ipfs', 'config'));
-    fs.readFileSync(configPath).then(file => {
-      const data = JSON.parse(file);
-      mypeerID = data.Identity.PeerID;
-    }).catch(err => {
-      console.error(err);
-    });
+    // fs.readFileSync(configPath).then(file => {
+    //   const data = JSON.parse(file);
+    //   mypeerID = data.Identity.PeerID;
+    // }).catch(err => {
+    //   console.error(err);
+    // });
+    const confResult = fs.readFileSync(configPath, 'utf-8');
+    const data = JSON.parse(confResult);
+    mypeerID = data.Identity.PeerID;
 
     console.log(`MyIPaddress is ${myip} `);
     console.log(`MyBootstrapPeerID is ${mypeerID} `);
@@ -189,7 +204,7 @@ const createWindow = () => {
   });
 
   ipcMain.handle('get-json-data', () => {
-    const jsonData = loadData();
+    jsonData = loadData();
     console.log(jsonData);
     return jsonData;
   });
@@ -201,7 +216,7 @@ const createWindow = () => {
 
 
     const configpath = getFilePath(path.join('.ipfs', 'config'));
-    deleteFile(configpath)
+    deleteFile(configpath);
 
     console.log(`BootstrapIp is ${bootstrapIp}`)
     console.log(`BootstrapPeerID is ${bootstrapPeerId}`)
@@ -293,8 +308,15 @@ const createWindow = () => {
   //win.webContents.openDevTools();
 };
 
+ipcMain.handle('openCmd', () => {
+  // 新しいウィンドウでコマンドプロンプトを起動
+  const cmd = spawn('cmd', ['/c', 'start'], {
+    detached: true, // 親プロセスから切り離して起動
+    stdio: 'ignore' // 標準入出力を無視
+  });
 
-
+  cmd.unref();
+});
 app.whenReady().then(() => {
   createWindow();
 

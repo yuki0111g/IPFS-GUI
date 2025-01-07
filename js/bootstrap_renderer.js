@@ -48,3 +48,7 @@ document.getElementById('downloadButton').addEventListener('click', function(eve
     const cid = document.getElementById('CID').value;
     window.apis.getContentEvent(cid);
 });
+
+document.getElementById('openCmd').addEventListener('click', function(event){
+    window.apis.openCmd();
+});

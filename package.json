@@ -25,7 +25,7 @@
       "node_modules/**",
       "main.js",
       "preload.js",
-      "data.json",
+      "!data.json",
       "!.ipfs/**",
       "!getdata/**",
       "!lib/**",
@@ -70,6 +70,10 @@
       {
         "from": "run.sh",
         "to": "run.sh"
+      },
+      {
+        "from": "data.json",
+        "to": "data.json"
       }
     ]
   }

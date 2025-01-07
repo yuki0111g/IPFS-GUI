@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+   
     window.apis.getJsonData().then((data) => {
         const ipValues = [data.btip];
         const pidValues = [data.btpid];
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.getElementById('connectBtn').addEventListener('click', function (event) {
+   
     event.preventDefault(); // ページのリロードを防止
 
     const ipInput = document.getElementById('ipaddress');
@@ -60,7 +62,7 @@ document.getElementById('connectBtn').addEventListener('click', function (event)
         const testBoxBTPeerID = document.getElementById('peerID').value;
         console.log(testBoxBTIP);
         console.log(testBoxBTPeerID);
-        window.apis.startGeneralNodeEvent(testBoxBTIP, testBoxBTPeerID);
+        window.apis.startGeneralNodeEvent(testBoxBTIP,testBoxBTPeerID);
         window.location.href = "general.html"; // 接続ページへ遷移
     }
 });

@@ -21,5 +21,6 @@ contextBridge.exposeInMainWorld('apis', {
     getJsonData: async () => {
         return await ipcRenderer.invoke('get-json-data');
     },
+    openCmd: () => ipcRenderer.invoke('openCmd'),
 });
 

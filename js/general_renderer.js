@@ -15,7 +15,7 @@ window.apis.onStderr((message) => {
     // outputTextarea.scrollTop = outputTextarea.scrollHeight; 
 });
 
-document.getElementById('exit').addEventListener('click', function(event){
+document.getElementById('exit').addEventListener('click', function (event) {
     window.apis.exitIpfsEvent();
 });
 
@@ -44,7 +44,11 @@ uploadButton.addEventListener('click', async () => {
     }
 });
 
-document.getElementById('downloadButton').addEventListener('click', function(event){
+document.getElementById('downloadButton').addEventListener('click', function (event) {
     const cid = document.getElementById('CID').value;
     window.apis.getContentEvent(cid);
+});
+
+document.getElementById('openCmd').addEventListener('click', function (event) {
+    window.apis.openCmd();
 });

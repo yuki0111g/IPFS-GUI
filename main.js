@@ -199,6 +199,12 @@ const createWindow = () => {
     console.log(`MyIPaddress is ${myip} `);
     console.log(`MyBootstrapPeerID is ${mypeerID} `);
 
+    //bootstrap画面にipとpidを送信
+    setTimeout(() => {
+      win.webContents.send('bt-info', String(myip), String(mypeerID));
+    }, 100);
+
+
     replaceLine(kpPath, 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/${mypeerID}`);
 
     //5.

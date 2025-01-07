@@ -110,3 +110,25 @@ textarea {
   white-space: pre-wrap;
   font-family: monospace;
 }
+.copy-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.copy-text {
+  font-size: 16px;
+  padding: 5px;
+}
+.copy-button {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.copy-button:hover {
+  background-color: #45a049;
+}

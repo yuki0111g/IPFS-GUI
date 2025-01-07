@@ -16,7 +16,19 @@
     </header>
 
     <main>
-        <h1>標準出力</h1>
+        <h2>標準出力</h2>
+        
+        <div class="copy-container">
+            <p>BootstrapのIPアドレス<span class="copy-text" id="text-to-copy-1"></span></p>
+            <button class="copy-button" data-target="text-to-copy-1">コピー</button>
+        </div>
+
+        
+        <div class="copy-container">
+            <p>BootstrapのPeerID<span class="copy-text" id="text-to-copy-2"></span></p>
+            <button class="copy-button" data-target="text-to-copy-2">コピー</button>
+        </div>
+
         <textarea id="output" readonly></textarea>
         <section class="about">
             <a href="index.html" id="exit" class="btn">切断してトップに戻る</a>
@@ -24,7 +36,8 @@
             <button id="uploadButton" class="btn">コンテンツをPUT</button>
             <p id="state"></p>
             <p>CIDを入力</p>
-            <input type="text" id="CID" name="CID" placeholder="12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE" required size="10" />
+            <input type="text" id="CID" name="CID" placeholder="12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE"
+                required size="10" />
             <button id="downloadButton" class="btn">コンテンツをGET</button>
             <br>
             <button id="openCmd" class="btn">コマンドプロンプトを開く</button>

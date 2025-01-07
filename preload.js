@@ -22,5 +22,6 @@ contextBridge.exposeInMainWorld('apis', {
         return await ipcRenderer.invoke('get-json-data');
     },
     openCmd: () => ipcRenderer.invoke('openCmd'),
+    btInfoFromMain: (callback)=> ipcRenderer.on('bt-info', (event, ipaddress,peerid) => callback(ipaddress,peerid)),
 });
 

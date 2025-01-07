@@ -52,3 +52,31 @@ document.getElementById('downloadButton').addEventListener('click', function(eve
 document.getElementById('openCmd').addEventListener('click', function(event){
     window.apis.openCmd();
 });
+
+// すべてのコピーボタンを取得
+const copyButtons = document.querySelectorAll('.copy-button');
+// 各ボタンにイベントリスナーを追加
+copyButtons.forEach(button => {
+    button.addEventListener('click', function () {
+        // data-target属性からコピー対象のIDを取得
+        const targetId = button.getAttribute('data-target');
+        const textToCopy = document.getElementById(targetId).innerText;
+
+        // クリップボードにコピー
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => {
+                alert('テキストをコピーしました: ' + textToCopy);
+            
+            })
+            .catch(err => {
+                console.error('コピーに失敗しました:', err);
+            });
+    });
+});
+
+window.apis.btInfoFromMain((ipaddress,peerid) =>{
+    const btip = document.getElementById('text-to-copy-1');
+    const btpid = document.getElementById('text-to-copy-2');
+    btip.innerText = ipaddress;
+    btpid.innerText = peerid;
+});

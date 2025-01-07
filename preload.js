@@ -11,11 +11,15 @@ contextBridge.exposeInMainWorld('apis', {
     //コンテンツのアップロード
     putContentEvent: (fileName, fileData) => ipcRenderer.invoke('putContent', { fileName, fileData }),
     //コンテンツのダウンロード
-    getContentEvent:(cid) => ipcRenderer.invoke('getContent',cid),
+    getContentEvent: (cid) => ipcRenderer.invoke('getContent', cid),
     //標準出力をbt_renderer.jsに送信
     onStdout: (callback) => ipcRenderer.on('stdout', (event, message) => callback(message)),
     onStderr: (callback) => ipcRenderer.on('stderr', (event, message) => callback(message)),
     //一般ノード起動
     startGeneralNodeEvent: (testBoxBTIP, testBoxBTPeerID) => ipcRenderer.invoke('startGeneralNode', testBoxBTIP, testBoxBTPeerID),
+    //data.jsonの読み込み
+    getJsonData: async () => {
+        return await ipcRenderer.invoke('get-json-data');
+    },
 });
 

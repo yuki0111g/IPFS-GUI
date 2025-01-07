@@ -1,3 +1,27 @@
+document.addEventListener('DOMContentLoaded', () => {
+    window.apis.getJsonData().then((data) => {
+        const ipValues = [data.btip];
+        const pidValues = [data.btpid];
+        const ipDataList = document.getElementById('ipdatalist');
+        const pidDataList = document.getElementById('piddatalist');
+
+        // 配列の値を基に <option> 要素を生成
+        ipValues.forEach((value) => {
+            const option = document.createElement('option'); // <option> を作成
+            option.value = value; // value を設定
+            ipDataList.appendChild(option); // datalist に追加
+        });
+
+        pidValues.forEach((value) => {
+            const option = document.createElement('option'); // <option> を作成
+            option.value = value; // value を設定
+            pidDataList.appendChild(option); // datalist に追加
+        });
+    });
+});
+
+
+
 document.getElementById('connectBtn').addEventListener('click', function (event) {
     event.preventDefault(); // ページのリロードを防止
 

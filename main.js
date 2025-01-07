@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
-const { spawn, execSync ,exec} = require('child_process');
-const fs = require('fs').promises;
+const { spawn, execSync, exec } = require('child_process');
+const fs = require('fs');
 const os = require('os');
 
 let batProcess;
@@ -15,6 +15,21 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+
+  //JSONにデータを保存
+  const dataPath = path.join(__dirname, 'data.json');
+
+  function saveData(data) {
+    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), 'utf-8');
+  }
+
+  function loadData() {
+    if (fs.existsSync(dataPath)) {
+      const rawData = fs.readFileSync(dataPath, 'utf-8');
+      return JSON.parse(rawData);
+    }
+    return {}; // デフォルトデータ
+  }
 
   //ビルド後はexeと同じ階層になる
   const getFilePath = (relativePath) => {
@@ -48,7 +63,7 @@ const createWindow = () => {
   async function replaceLine(filePath, lineNumber, newText) {
     try {
       // ファイル全体を読み込む
-      const data = await fs.readFile(filePath, 'utf8');
+      const data = fs.readFileSync(filePath, 'utf8');
 
       // 行単位で分割
       const lines = data.split('\n');
@@ -62,7 +77,7 @@ const createWindow = () => {
       }
 
       // ファイルに書き戻す
-      await fs.writeFile(filePath, lines.join('\n'), 'utf8');
+      fs.writeFileSync(filePath, lines.join('\n'), 'utf8');
       console.log('The specified line has been changed.');
     } catch (err) {
       console.error('An error has occurred:', err);
@@ -71,7 +86,7 @@ const createWindow = () => {
 
   async function deleteFile(filePath) {
     try {
-      await fs.unlink(filePath);
+      fs.unlinkSync(filePath);
       return true;
     } catch (err) {
       return false;
@@ -115,7 +130,7 @@ const createWindow = () => {
    */
 
     console.log('Start Setup BootstrapNode');
-    
+
 
     //1.
     //バックスラッシュをバックスラッシュでエスケープする必要があります。
@@ -140,7 +155,7 @@ const createWindow = () => {
 
     //デフォルトに戻す。PeerIDは仮で、configに生成されたPeerIDが正しい
     const kpPath = getFilePath('kadrtt.properties');
-    console.log('Resolved File Path:',kpPath);
+    console.log('Resolved File Path:', kpPath);
     replaceLine(kpPath, 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
 
     //3. 10秒だけ起動
@@ -149,8 +164,8 @@ const createWindow = () => {
     //4. 生成された.ipfs/configのBootstrapID読み取り
     let mypeerID;
 
-    const configPath=getFilePath(path.join('.ipfs', 'config'));
-    await fs.readFile(configPath).then(file => {
+    const configPath = getFilePath(path.join('.ipfs', 'config'));
+    fs.readFileSync(configPath).then(file => {
       const data = JSON.parse(file);
       mypeerID = data.Identity.PeerID;
     }).catch(err => {
@@ -173,8 +188,17 @@ const createWindow = () => {
     bootIPFS();
   });
 
+  ipcMain.handle('get-json-data', () => {
+    const jsonData = loadData();
+    console.log(jsonData);
+    return jsonData;
+  });
+
   //IPC handler 一般ノード起動
   ipcMain.handle('startGeneralNode', async (_e, bootstrapIp, bootstrapPeerId) => {
+    const inputData = { btip: bootstrapIp, btpid: bootstrapPeerId };
+    saveData(inputData);
+
 
     const configpath = getFilePath(path.join('.ipfs', 'config'));
     deleteFile(configpath)
@@ -201,9 +225,16 @@ const createWindow = () => {
   });
 
   ipcMain.handle('openExplorer', () => {
-    spawn('explorer', [__dirname]);
+    spawn('explorer', [path.resolve(process.resourcesPath, '../')]);
   });
 
+  // ipcMain.handle('openExplorer', () => {
+  //   spawn('explorer', [() => {
+  //     return app.isPackaged
+  //       ? path.resolve(process.resourcesPath, '../') // ビルド後
+  //       : __dirname; // 開発中
+  //   }]);
+  // });
   ipcMain.on('close', () => {
     app.quit();
   });
@@ -216,7 +247,7 @@ const createWindow = () => {
       savePath = getFilePath(path.join('putTmp', fileName));
 
       // ファイルを保存
-      await fs.writeFile(savePath, Buffer.from(fileData));
+      fs.writeFileSync(savePath, Buffer.from(fileData));
       console.log('putTMPファイルに仮保存しました');
     } catch (error) {
       return { success: false, error: error.message };
@@ -224,7 +255,7 @@ const createWindow = () => {
 
     console.log(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
     win.webContents.send('stdout', `curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
-    win.webContents.send('stdout',execSync(`cd`).toString());
+    win.webContents.send('stdout', execSync(`cd`).toString());
     let result = execSync(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
     result = result.toString();
     result = JSON.parse(result);
@@ -239,17 +270,17 @@ const createWindow = () => {
   ipcMain.handle('getContent', async (_e, cid) => {
     //let result = execSync(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/getvalue?cid=${cid}"`);
 
-    
+
     async function getContentExec(cid) {
       const p1 = new Promise((resolve, reject) => {
-        const result = exec(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/getvalue?cid=${cid}"`,(error,stdout,stderr)=>{
+        const result = exec(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/getvalue?cid=${cid}"`, (error, stdout, stderr) => {
           console.log(stdout);
-          resolve([error,stdout,stderr]);
+          resolve([error, stdout, stderr]);
         });
       });
       return p1
     }
-    let result = await getContentExec(cid); 
+    let result = await getContentExec(cid);
     console.log(result[0]);
     console.log(result[1]);
     console.log(result[2]);

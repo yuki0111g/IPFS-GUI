@@ -25,6 +25,7 @@
       "node_modules/**",
       "main.js",
       "preload.js",
+      "data.json",
       "!.ipfs/**",
       "!getdata/**",
       "!lib/**",

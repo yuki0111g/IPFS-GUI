@@ -39,8 +39,18 @@ const createWindow = () => {
     }
     return {}; // デフォルトデータ
   }
+  // レンダラから設定変更リクエストを受け取る
+  ipcMain.on('update-config', (event, newConfig) => {
+    jsonData = loadData();
+    jsonData = { ...jsonData, ...newConfig }; // 設定を更新
+    console.log('Updated Config:', jsonData); // コンソールに出力（デバッグ用）
+    saveData(jsonData);
+  });
 
-
+  // JSONdataをrenderに送信
+  ipcMain.handle('send-config', async () => {
+    return loadData();
+  });
 
   async function bootAndExitIPFS() {
     const p1 = new Promise((resolve, reject) => {
@@ -114,7 +124,7 @@ const createWindow = () => {
     // 標準エラーを取得
     batProcess.stderr.on('data', (data) => {
       console.error(`エラー扱い: ${data}`);
-      if (jsonData.logLevel == "stderr") {
+      if (jsonData.logLevel) {
         win.webContents.send('stderr', String(data));//エラーをpreload.jsに送信
       }
 
@@ -166,7 +176,7 @@ const createWindow = () => {
     replaceLine(kpPath, 38, `ipfs.endpoint=/ip4/${myip}/tcp/4001/ipfs/12D3KooWLnD3DbZRNqXBrwRJamd1iKGVcgmYBjiXLSEssfo2DZzE`);
 
     //3. 10秒だけ起動
-    if (jsonData.cleanBoot == "1") {
+    if (jsonData.cleanBoot == "1" || jsonData.alwaysCleanBoot) {
       //deleteFile(getFilePath(path.join('.ipfs', 'config')));
       await bootAndExitIPFS();
       jsonData.cleanBoot = "0";
@@ -260,13 +270,17 @@ const createWindow = () => {
     spawn('explorer', [path.resolve(process.resourcesPath, '../')]);
   });
 
-  // ipcMain.handle('openExplorer', () => {
-  //   spawn('explorer', [() => {
-  //     return app.isPackaged
-  //       ? path.resolve(process.resourcesPath, '../') // ビルド後
-  //       : __dirname; // 開発中
-  //   }]);
-  // });
+  ipcMain.handle('openExplorerGetdata', () => {
+    spawn('explorer', [path.resolve(process.resourcesPath, '../getdata')]);
+  });
+
+  ipcMain.handle('showPeerlist', () => {
+    let result = execSync(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/peerlist"`);
+    result = result.toString();
+
+    win.webContents.send('stdout', `隣接ノードリスト: ${result}`);
+
+  });
   ipcMain.on('close', () => {
     app.quit();
   });
@@ -287,7 +301,7 @@ const createWindow = () => {
 
     console.log(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
     win.webContents.send('stdout', `curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
-    win.webContents.send('stdout', execSync(`cd`).toString());
+    //win.webContents.send('stdout', execSync(`cd`).toString());
     let result = execSync(`curl -X POST "http://127.0.0.1:5001/api/v0/dht/putvaluewithattr?file=putTMP/${fileName}"`);
     result = result.toString();
     result = JSON.parse(result);
@@ -334,6 +348,9 @@ ipcMain.handle('openCmd', () => {
 
   cmd.unref();
 });
+
+
+
 app.whenReady().then(() => {
   createWindow();
 

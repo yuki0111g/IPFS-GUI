@@ -1,0 +1,167 @@
+/* labelをボタンらしく */
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    /* カーソルを指に */
+    margin: 1em 0;
+    /* まわりの余白 */
+    padding: .7em 1em;
+    /* 文字まわりの余白 */
+    line-height: 1.4;
+    /* 行間 */
+    background: #ffce63;
+    /* 背景色 */
+    text-decoration: none;
+    /* URLっぽさ */
+    color: #000000;
+    /* 文字色 */
+    font-size: 0.95em;
+    /* フォントサイズ */
+    border-radius: 5px;
+    /* 角の丸み */
+    transition: 0.2s;
+    /* ホバーをなめらかに */
+}
+
+/* ホバー時 */
+.btn:hover {
+    box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2);
+    /* 影を表示 */
+}
+
+/* inputは隠す */
+.btn input {
+    display: none;
+}
+
+/* グローバルスタイル */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダー */
+header {
+    background-color: #ffce63;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+/* メインコンテンツ */
+main {
+    padding: 20px;
+}
+
+/* セクション */
+section {
+    margin-bottom: 40px;
+}
+
+/* ヒーローセクション */
+.hero {
+    text-align: center;
+}
+
+/* アバウトセクション */
+.about-center {
+    text-align: center;
+}
+
+.about-left {
+    text-align: left;
+}
+
+/* フッター */
+footer {
+    background-color: #ffce63;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 背景 */
+.bg_pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffe9a7;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.Wavy {
+    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #ffe9a7 20px), repeating-linear-gradient(#ffc10755, #ffc107);
+}
+
+.toggle_input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.toggle_label {
+    width: 75px;
+    height: 35px;
+    background: #ccc;
+    position: relative;
+    display: inline-block;
+    border-radius: 40px;
+    transition: 0.4s;
+    box-sizing: border-box;
+}
+
+.toggle_label:after {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+}
+
+.toggle_input:checked+.toggle_label {
+    background-color: #00bfff;
+}
+
+.toggle_input:checked+.toggle_label:after {
+    left: 40px;
+}
+
+.toggle_button {
+    position: relative;
+    width: auto;
+    /* テキストが追加されるので幅を自動調整 */
+    height: 35px;
+    display: flex;
+    /* フレックスボックスで整列 */
+    align-items: center;
+    /* 垂直方向に中央揃え */
+    gap: 10px;
+    /* テキストとトグルボタンの間の余白 */
+    margin: auto;
+}
+
+.toggle_text {
+    font-size: 16px;
+    /* テキストのサイズを調整 */
+    color: #333;
+    /* テキストの色 */
+    user-select: none;
+    /* テキスト選択を無効化（オプション） */
+}

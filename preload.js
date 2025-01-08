@@ -22,6 +22,17 @@ contextBridge.exposeInMainWorld('apis', {
         return await ipcRenderer.invoke('get-json-data');
     },
     openCmd: () => ipcRenderer.invoke('openCmd'),
-    btInfoFromMain: (callback)=> ipcRenderer.on('bt-info', (event, ipaddress,peerid) => callback(ipaddress,peerid)),
+    btInfoFromMain: (callback) => ipcRenderer.on('bt-info', (event, ipaddress, peerid) => callback(ipaddress, peerid)),
+    openExplorerGetdata: () => ipcRenderer.invoke('openExplorerGetdata'),
+    showPeerlist: () => ipcRenderer.invoke('showPeerlist'),
+    updateConfig: (newConfig) => ipcRenderer.send('update-config', newConfig),
+    sendConfig: async () => {
+        try {
+            return await ipcRenderer.invoke('send-config');
+        } catch (err) {
+            console.error('Error in preload.js:', err);
+            throw err;
+        }
+    },
 });
 

@@ -52,3 +52,9 @@ document.getElementById('downloadButton').addEventListener('click', function (ev
 document.getElementById('openCmd').addEventListener('click', function (event) {
     window.apis.openCmd();
 });
+document.getElementById('openExplorerGetdata').addEventListener('click', function(event){
+    window.apis.openExplorerGetdata();
+});
+document.getElementById('showPeerlist').addEventListener('click', function(event){
+    window.apis.showPeerlist();
+});

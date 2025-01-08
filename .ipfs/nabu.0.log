@@ -385,3 +385,9 @@ java.lang.NoSuchMethodError: identify.pb.IdentifyOuterClass$Identify.emptyList(L
 情報: API Handler handled dht/putvaluewithattr query in: 53 mS
 1月 08, 2025 12:52:24 午前 org.peergos.net.APIHandler handleCallToAPI
 情報: API Handler handled dht/putvaluewithattr query in: 85 mS
+1月 08, 2025 12:05:53 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/peerlist query in: 45 mS
+1月 08, 2025 12:25:34 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/peerlist query in: 22 mS
+1月 08, 2025 12:25:44 午後 org.peergos.net.APIHandler handleCallToAPI
+情報: API Handler handled dht/peerlist query in: 1 mS

@@ -80,3 +80,11 @@ window.apis.btInfoFromMain((ipaddress,peerid) =>{
     btip.innerText = ipaddress;
     btpid.innerText = peerid;
 });
+
+document.getElementById('openExplorerGetdata').addEventListener('click', function(event){
+    window.apis.openExplorerGetdata();
+});
+
+document.getElementById('showPeerlist').addEventListener('click', function(event){
+    window.apis.showPeerlist();
+});

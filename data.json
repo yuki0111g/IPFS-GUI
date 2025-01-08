@@ -1,6 +1,8 @@
 {
   "btip": "",
   "btpid": "",
-  "logLevel": "stdout",
-  "cleanBoot": "1"
+  "logLevel": false,
+  "cleanBoot": "1",
+  "alwaysCleanBoot": false,
+  "featureC": false
 }
